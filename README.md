@@ -1,2 +1,2 @@
 # ClimaTempo
-app criado com React Native
+app criado com Flutter
