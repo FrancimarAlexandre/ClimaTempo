@@ -1,77 +1,68 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
 
 void main() {
-  runApp(const MyApp());
+  runApp(MyApp());
 }
 
 class MyApp extends StatelessWidget {
-  const MyApp({super.key});
-
-  // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Clima Tempo',
+      title: "Clima Tempo",
       theme: ThemeData(
-       
-        colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
-        useMaterial3: true,
+        primarySwatch: Colors.blue,
       ),
-      home: const MyHomePage(title: 'Clima Tempo Home Page'),
+      home: WeatherHomePage(),
     );
   }
 }
 
-class MyHomePage extends StatefulWidget {
-  const MyHomePage({super.key, required this.title});
-
-  final String title;
-
+class WeatherHomePage extends StatefulWidget {
   @override
-  State<MyHomePage> createState() => _MyHomePageState();
+  _WeatherHomePageState createState() => _WeatherHomePageState();
 }
+class _WeatherHomePageState extends State<WeatherHomePage> {
 
-class _MyHomePageState extends State<MyHomePage> {
-  int _counter = 0;
+  int _selectedIndex = 0;
 
-  void _incrementCounter() {
-    setState(() {
+  static const List<Widget> _widgetOpnions = <Widget>[
+    Text('Home Page'),
+    Text('Weather'),
+    Text('settings'),
+  ];
 
-      _counter++;
+  void _onItemTapped(int index){
+    setState((){
+      _selectedIndex = index;
     });
   }
-
   @override
   Widget build(BuildContext context) {
-
     return Scaffold(
       appBar: AppBar(
-
-        backgroundColor: Theme.of(context).colorScheme.inversePrimary,
-
-        title: Text(widget.title),
+        title: Text('Clima Tempo'),
+        backgroundColor: Colors.lightBlue,
       ),
       body: Center(
-        
-        child: Column(
-
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: <Widget>[
-            const Text(
-              'You have pushed the button this many times:',
-            ),
-            Text(
-              '$_counter',
-              style: Theme.of(context).textTheme.headlineMedium,
-            ),
-          ],
-        ),
+        child: _widgetOpnions.elementAt(_selectedIndex),
       ),
-      floatingActionButton: FloatingActionButton(
-        onPressed: _incrementCounter,
-        tooltip: 'Increment',
-        child: const Icon(Icons.add),
-      ), 
+      bottomNavigationBar: BottomNavigationBar(
+        items: const <BottomNavigationBarItem>[
+          BottomNavigationBarItem(icon: Icon(Icons.home),
+          label:'Home',
+          ),
+          BottomNavigationBarItem(icon: Icon(Icons.cloud),
+          label: 'Weather',
+          ),
+          BottomNavigationBarItem(icon: Icon(Icons.settings),
+          label:'Settings',
+          ),
+        ],
+        currentIndex: _selectedIndex,
+        selectedItemColor: Colors.blue,
+        onTap: _onItemTapped,
+      )
     );
   }
 }
