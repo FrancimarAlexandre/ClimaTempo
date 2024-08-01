@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
-
+import 'pages/home_page.dart';
+import 'pages/settings_page.dart';
+import 'pages/weather_page.dart';
 void main() {
   runApp(MyApp());
 }
@@ -26,10 +27,10 @@ class _WeatherHomePageState extends State<WeatherHomePage> {
 
   int _selectedIndex = 0;
 
-  static const List<Widget> _widgetOpnions = <Widget>[
-    Text('Home Page'),
-    Text('Weather'),
-    Text('settings'),
+  static  List<Widget> _widgetOpnions = <Widget>[
+    HomePage(),
+    WeatherPage(),
+    SettingsPage(),
   ];
 
   void _onItemTapped(int index){
