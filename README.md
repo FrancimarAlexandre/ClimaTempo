@@ -1,2 +1,2 @@
 # ClimaTempo
-app criado com Flutter
+app criado com a biblioteca Kivy
